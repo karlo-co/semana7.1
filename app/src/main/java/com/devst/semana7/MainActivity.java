@@ -401,13 +401,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    // =============================================
-    // ABRIR MAPA
+// =============================================
+    // IMPLÍCITO 1: ABRIR MAPA
     // =============================================
 
     private void abrirMapa() {
 
-        // Revisamos si tenemos ubicación
+        // VALIDACIÓN: necesitamos tener ubicación
         if (!ubicacionObtenida) {
 
             Toast.makeText(
@@ -421,6 +421,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Creamos la dirección para el mapa
+        // Formato: geo:lat,lng?q=lat,lng(Etiqueta)
         String direccion =
 
                 "geo:"
@@ -430,7 +431,8 @@ public class MainActivity extends AppCompatActivity {
                         + "?q="
                         + latitud
                         + ","
-                        + longitud;
+                        + longitud
+                        + "(Mi ubicación)";
 
 
         Uri uri =
@@ -452,24 +454,57 @@ public class MainActivity extends AppCompatActivity {
                         uri
                 );
 
+        lanzarIntentImplicito(
+                intent,
+                "No existe una aplicación de mapas instalada"
+        );
 
-        // Revisamos si existe una aplicación
-        // que pueda realizar la acción
+    }
 
-        if (intent.resolveActivity(
-                getPackageManager()) != null) {
 
-            startActivity(intent);
+    // =============================================
+    // IMPLÍCITO 2: ABRIR PÁGINA WEB
+    // =============================================
 
-        } else {
+    private void abrirPaginaWeb() {
 
-            Toast.makeText(
-                    MainActivity.this,
-                    "No existe una aplicación de mapas instalada",
-                    Toast.LENGTH_SHORT
-            ).show();
+        String url = etUrl.getText().toString().trim();
 
+        // VALIDACIÓN 1: campo vacío
+        if (url.isEmpty()) {
+
+            etUrl.setError("Ingresa una dirección web");
+            return;
         }
+
+        // Si el usuario escribió "www.inacap.cl" le agregamos https://
+        if (!url.startsWith("http://") && !url.startsWith("https://")) {
+
+            url = "https://" + url;
+        }
+
+        // VALIDACIÓN 2: formato de URL válido
+        if (!Patterns.WEB_URL.matcher(url).matches()) {
+
+            etUrl.setError("La dirección no es válida");
+            return;
+        }
+
+        /*
+         * INTENT IMPLÍCITO
+         *
+         * ACTION_VIEW + https://  →  Android abre un navegador.
+         */
+        Intent intent =
+                new Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse(url)
+                );
+
+        lanzarIntentImplicito(
+                intent,
+                "No hay un navegador instalado"
+        );
 
     }
 

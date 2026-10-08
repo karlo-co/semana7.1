@@ -20,6 +20,9 @@
     <uses-permission
         android:name="android.permission.CAMERA" />
 
+    <!-- NOTA: ACTION_DIAL, ACTION_SENDTO, ACTION_VIEW y ACTION_GET_CONTENT -->
+    <!-- NO necesitan permisos, porque es la otra app la que hace el trabajo. -->
+
 
     <!-- ========================================= -->
     <!-- HARDWARE -->
@@ -32,6 +35,55 @@
     <uses-feature
         android:name="android.hardware.camera.flash"
         android:required="false" />
+
+
+    <!-- ========================================= -->
+    <!-- QUERIES (VISIBILIDAD DE PAQUETES) -->
+    <!-- ========================================= -->
+
+    <!--
+        Desde Android 11 (API 30) una app NO puede "ver" qué otras
+        apps están instaladas. Por eso resolveActivity() devuelve null
+        aunque exista Google Maps o un navegador.
+
+        Aquí declaramos qué tipo de intents implícitos vamos a lanzar,
+        para que resolveActivity() funcione y podamos VALIDAR
+        si existe una app capaz de responder.
+    -->
+
+    <queries>
+
+        <!-- Implícito 1: abrir mapas (geo:) -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="geo" />
+        </intent>
+
+        <!-- Implícito 2: abrir página web (https://) -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
+
+        <!-- Implícito 3: marcador telefónico (tel:) -->
+        <intent>
+            <action android:name="android.intent.action.DIAL" />
+            <data android:scheme="tel" />
+        </intent>
+
+        <!-- Implícito 4: enviar correo (mailto:) -->
+        <intent>
+            <action android:name="android.intent.action.SENDTO" />
+            <data android:scheme="mailto" />
+        </intent>
+
+        <!-- Implícito 5: seleccionar imagen de galería -->
+        <intent>
+            <action android:name="android.intent.action.GET_CONTENT" />
+            <data android:mimeType="image/*" />
+        </intent>
+
+    </queries>
 
 
     <!-- ========================================= -->
@@ -50,11 +102,34 @@
 
 
         <!-- ===================================== -->
-        <!-- SEGUNDA PANTALLA -->
+        <!-- EXPLÍCITO 1: DETALLE (recibe extras) -->
         <!-- ===================================== -->
 
         <activity
-            android:name=".SegundaActivity"
+            android:name=".DetalleActivity"
+            android:exported="false" />
+
+
+        <!-- ===================================== -->
+        <!-- EXPLÍCITO 2: AJUSTES (Toolbar + atrás) -->
+        <!-- ===================================== -->
+
+        <activity
+            android:name=".ConfigActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+
+
+        <!-- ===================================== -->
+        <!-- EXPLÍCITO 3: FORMULARIO → CONFIRMACIÓN -->
+        <!-- ===================================== -->
+
+        <activity
+            android:name=".FormActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ConfirmActivity"
             android:exported="false" />
 
 

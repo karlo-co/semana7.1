@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
+
+    <!-- TOOLBAR: barra superior con título y flecha atrás -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Preferencias de la app"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/swNotificaciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🔔 Notificaciones"
+            android:textSize="16sp"
+            android:padding="12dp"/>
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/swModoOscuro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🌙 Modo oscuro"
+            android:textSize="16sp"
+            android:padding="12dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MainActivity → ConfigActivity (Toolbar con botón Atrás)"
+            android:textSize="14sp"
+            android:layout_marginTop="24dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

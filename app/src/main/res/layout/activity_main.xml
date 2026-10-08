@@ -1,79 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<!-- ScrollView: como hay muchos botones, permitimos desplazar la pantalla -->
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:padding="24dp">
+    android:fitsSystemWindows="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Intents y Funciones Android"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="10dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Proyecto básico en Java"
-        android:textSize="18sp"
-        android:layout_marginBottom="40dp"/>
-
-
-    <!-- LINTERNA -->
-
-    <Button
-        android:id="@+id/btnLinterna"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="💡 ENCENDER LINTERNA"/>
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Intents y Funciones Android"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="6dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Prototipo 2 · 5 implícitos + 3 explícitos"
+            android:textSize="16sp"
+            android:layout_marginBottom="24dp"/>
 
 
-    <!-- INTENT EXPLÍCITO -->
+        <!-- ===================================== -->
+        <!-- FUNCIONES DEL PROYECTO BASE -->
+        <!-- ===================================== -->
 
-    <Button
-        android:id="@+id/btnSegundaVista"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="📱 IR A SEGUNDA VISTA"
-        android:layout_marginTop="15dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🔦 Funciones del dispositivo"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <!-- LINTERNA -->
+        <Button
+            android:id="@+id/btnLinterna"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="💡 ENCENDER LINTERNA"
+            android:layout_marginTop="8dp"/>
+
+        <!-- GEOLOCALIZACIÓN -->
+        <Button
+            android:id="@+id/btnUbicacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📍 OBTENER MI UBICACIÓN"
+            android:layout_marginTop="8dp"/>
+
+        <!-- RESULTADO UBICACIÓN -->
+        <TextView
+            android:id="@+id/txtUbicacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ubicación aún no obtenida"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:padding="10dp"/>
 
 
-    <!-- GEOLOCALIZACIÓN -->
+        <!-- ===================================== -->
+        <!-- INTENTS IMPLÍCITOS -->
+        <!-- ===================================== -->
 
-    <Button
-        android:id="@+id/btnUbicacion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="📍 OBTENER MI UBICACIÓN"
-        android:layout_marginTop="15dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🌐 Intents implícitos (abren otras apps)"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"/>
+
+        <!-- IMPLÍCITO 1: MAPA -->
+        <Button
+            android:id="@+id/btnMapa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🗺️ VER UBICACIÓN EN MAPA"
+            android:layout_marginTop="8dp"/>
+
+        <!-- IMPLÍCITO 2: PÁGINA WEB -->
+        <EditText
+            android:id="@+id/etUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Sitio web (ej: www.inacap.cl)"
+            android:inputType="textUri"
+            android:text="https://developer.android.com"
+            android:layout_marginTop="12dp"/>
+
+        <Button
+            android:id="@+id/btnWeb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🌍 ABRIR PÁGINA WEB"/>
+
+        <!-- IMPLÍCITO 3: MARCADOR TELEFÓNICO -->
+        <EditText
+            android:id="@+id/etTelefono"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Teléfono (ej: +56912345678)"
+            android:inputType="phone"
+            android:layout_marginTop="12dp"/>
+
+        <Button
+            android:id="@+id/btnLlamar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📞 ABRIR MARCADOR"/>
+
+        <!-- IMPLÍCITO 4: CORREO -->
+        <EditText
+            android:id="@+id/etCorreo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Correo destino (ej: profe@correo.cl)"
+            android:inputType="textEmailAddress"
+            android:layout_marginTop="12dp"/>
+
+        <Button
+            android:id="@+id/btnCorreo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="✉️ ENVIAR CORREO"/>
+
+        <!-- IMPLÍCITO 5: GALERÍA -->
+        <Button
+            android:id="@+id/btnGaleria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🖼️ ELEGIR IMAGEN DE GALERÍA"
+            android:layout_marginTop="12dp"/>
+
+        <!-- Aquí mostramos la imagen que vuelve de la galería -->
+        <ImageView
+            android:id="@+id/imgGaleria"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="Imagen seleccionada de la galería"
+            android:visibility="gone"/>
 
 
-    <!-- RESULTADO UBICACIÓN -->
+        <!-- ===================================== -->
+        <!-- INTENTS EXPLÍCITOS -->
+        <!-- ===================================== -->
 
-    <TextView
-        android:id="@+id/txtUbicacion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ubicación aún no obtenida"
-        android:textSize="16sp"
-        android:textAlignment="center"
-        android:padding="15dp"
-        android:layout_marginTop="15dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📱 Intents explícitos (pantallas propias)"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"/>
 
+        <!-- EXPLÍCITO 1: DETALLE CON EXTRAS -->
+        <Button
+            android:id="@+id/btnDetalle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📄 VER DETALLE (con datos extra)"
+            android:layout_marginTop="8dp"/>
 
-    <!-- INTENT IMPLÍCITO -->
+        <!-- EXPLÍCITO 2: AJUSTES -->
+        <Button
+            android:id="@+id/btnConfig"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="⚙️ AJUSTES"
+            android:layout_marginTop="8dp"/>
 
-    <Button
-        android:id="@+id/btnMapa"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="🗺️ VER UBICACIÓN EN MAPA"
-        android:layout_marginTop="15dp"/>
+        <!-- EXPLÍCITO 3: FORMULARIO → CONFIRMACIÓN -->
+        <Button
+            android:id="@+id/btnFormulario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📝 FORMULARIO (con resultado)"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="24dp"/>
 
-</LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

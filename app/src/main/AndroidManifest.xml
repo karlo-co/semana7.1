@@ -33,6 +33,39 @@
         android:name="android.hardware.camera.flash"
         android:required="false" />
 
+    <queries>
+
+        <!-- Implícito 1: abrir mapas (geo:) -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="geo" />
+        </intent>
+
+        <!-- Implícito 2: abrir página web (https://) -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
+
+        <!-- Implícito 3: marcador telefónico (tel:) -->
+        <intent>
+            <action android:name="android.intent.action.DIAL" />
+            <data android:scheme="tel" />
+        </intent>
+
+        <!-- Implícito 4: enviar correo (mailto:) -->
+        <intent>
+            <action android:name="android.intent.action.SENDTO" />
+            <data android:scheme="mailto" />
+        </intent>
+
+        <!-- Implícito 5: seleccionar imagen de galería -->
+        <intent>
+            <action android:name="android.intent.action.GET_CONTENT" />
+            <data android:mimeType="image/*" />
+        </intent>
+
+    </queries>
 
     <!-- ========================================= -->
     <!-- APLICACIÓN -->

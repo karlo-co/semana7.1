@@ -68,68 +68,94 @@ public class MainActivity extends AppCompatActivity {
         txtUbicacion = findViewById(R.id.txtUbicacion);
 
 
-        // =========================================
-        // PREPARAR LA LINTERNA
-        // =========================================
+        private void lanzarIntentImplicito(Intent intent, String mensajeSiNoHayApp) {
 
-        cameraManager =
-                (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+            if (intent.resolveActivity(getPackageManager()) != null) {
 
-        try {
+                try {
 
-            String[] camaras =
-                    cameraManager.getCameraIdList();
+                    startActivity(intent);
 
-            if (camaras.length > 0) {
+                } catch (ActivityNotFoundException e) {
 
-                idCamara = camaras[0];
+                    // Segunda red de seguridad
+                    Toast.makeText(
+                            MainActivity.this,
+                            mensajeSiNoHayApp,
+                            Toast.LENGTH_SHORT
+                    ).show();
+
+                }
+
+            } else {
+
+                Toast.makeText(
+                        MainActivity.this,
+                        mensajeSiNoHayApp,
+                        Toast.LENGTH_SHORT
+                ).show();
 
             }
-
-        } catch (CameraAccessException e) {
-
-            Toast.makeText(
-                    MainActivity.this,
-                    "Error al acceder a la cámara",
-                    Toast.LENGTH_SHORT
-            ).show();
 
         }
 
 
-        // =========================================
-        // BOTÓN LINTERNA
-        // =========================================
+        // =============================================
+        // ENCENDER / APAGAR LINTERNA
+        // =============================================
 
-        btnLinterna.setOnClickListener(
-                new View.OnClickListener() {
+        private void cambiarLinterna() {
 
-                    @Override
-                    public void onClick(View view) {
+            if (idCamara == null) {
 
-                        // Revisamos permiso de cámara
-                        if (ActivityCompat.checkSelfPermission(
-                                MainActivity.this,
-                                Manifest.permission.CAMERA)
-                                != PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(
+                        MainActivity.this,
+                        "No se encontró una cámara con flash",
+                        Toast.LENGTH_SHORT
+                ).show();
 
-                            // Pedimos permiso
-                            ActivityCompat.requestPermissions(
-                                    MainActivity.this,
-                                    new String[]{
-                                            Manifest.permission.CAMERA
-                                    },
-                                    PERMISO_CAMARA
-                            );
+                return;
+            }
 
-                            return;
-                        }
+            try {
 
-                        cambiarLinterna();
+                // Cambiamos el estado
+                linternaEncendida = !linternaEncendida;
 
-                    }
-                });
+                // Encendemos o apagamos
+                cameraManager.setTorchMode(
+                        idCamara,
+                        linternaEncendida
+                );
 
+
+                // Cambiar texto del botón
+
+                if (linternaEncendida) {
+
+                    btnLinterna.setText(
+                            "APAGAR LINTERNA"
+                    );
+
+                } else {
+
+                    btnLinterna.setText(
+                            "ENCENDER LINTERNA"
+                    );
+
+                }
+
+            } catch (CameraAccessException e) {
+
+                Toast.makeText(
+                        MainActivity.this,
+                        "No se pudo controlar la linterna",
+                        Toast.LENGTH_SHORT
+                ).show();
+
+            }
+
+        }
 
         // =========================================
         // INTENT EXPLÍCITO

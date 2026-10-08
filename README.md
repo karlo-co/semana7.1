@@ -8,9 +8,7 @@
 
 | Integrante | Rol |
 |---|---|
-| Nombre 1 | ... |
-| Nombre 2 | ... |
-| Nombre 3 | ... |
+| Nombre 1 | Carlos Gonzalez
 
 ---
 
@@ -85,7 +83,7 @@ Este es el segundo prototipo del ramo **Programación Android**. Parte del proye
 
 1. 📥 Clona el repositorio:
    ```bash
-   git clone https://github.com/USUARIO/REPOSITORIO.git
+   git clone https://github.com/karlo-co/semana7.1.git
    ```
 2. 🧩 Ábrelo en **Android Studio** y espera a que termine *Gradle Sync*.
 3. ▶️ Ejecútalo en un emulador o un teléfono con Android 12 o superior.
@@ -95,7 +93,6 @@ Este es el segundo prototipo del ramo **Programación Android**. Parte del proye
    app/build/outputs/apk/debug/app-debug.apk
    ```
 
-> 💡 **En el emulador:** para simular el GPS, abre `⋮ Extended controls → Location` y presiona *Set location*. Usa una imagen con **Google Play** para tener Maps, Gmail y Chrome.
 
 ---
 

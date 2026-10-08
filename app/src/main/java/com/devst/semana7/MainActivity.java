@@ -589,3 +589,46 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+// =============================================
+// IMPLÍCITO 3: ABRIR MARCADOR TELEFÓNICO
+// =============================================
+
+private void abrirMarcador() {
+
+    String telefono = etTelefono.getText().toString().trim();
+
+    // VALIDACIÓN 1: campo vacío
+    if (telefono.isEmpty()) {
+
+        etTelefono.setError("Ingresa un número de teléfono");
+        return;
+    }
+
+    // VALIDACIÓN 2: solo números (con + opcional), entre 8 y 12 dígitos
+    if (!telefono.matches("^\\+?[0-9]{8,12}$")) {
+
+        etTelefono.setError("Número inválido (ej: +56912345678)");
+        return;
+    }
+
+    /*
+     * INTENT IMPLÍCITO
+     *
+     * ACTION_DIAL solo MUESTRA el número en el marcador.
+     * El usuario decide si llama o no.
+     *
+     * Por eso NO necesita el permiso CALL_PHONE
+     * (ese permiso es para ACTION_CALL, que llama directo).
+     */
+    Intent intent =
+            new Intent(
+                    Intent.ACTION_DIAL,
+                    Uri.parse("tel:" + telefono)
+            );
+
+    lanzarIntentImplicito(
+            intent,
+            "No hay una aplicación de teléfono disponible"
+    );
+
+}

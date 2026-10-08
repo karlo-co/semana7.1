@@ -75,7 +75,7 @@ Este es el segundo prototipo del ramo **Programación Android**. Parte del proye
 
 | Pantalla principal | Detalle | Ajustes | Confirmación |
 |---|---|---|---|
-| ![main](capturas/main.png) | ![detalle](capturas/detalle.png) | ![config](capturas/config.png) | ![confirm](capturas/confirm.png) |
+| ![main](capturas/main.jpg) | ![detalle](capturas/detalle.jpg) | ![config](capturas/config.jpg) | ![confirm](capturas/confirm.jpg) |
 
 ---
 

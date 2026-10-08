@@ -73,9 +73,9 @@ Este es el segundo prototipo del ramo **Programación Android**. Parte del proye
 
 > Guarda las imágenes en la carpeta `capturas/` con estos nombres (mínimo 4).
 
-| Pantalla principal         | Detalle | Ajustes | Confirmación |
-|----------------------------|---|---|---|
-| ![main](capturas/main.jpg) | ![detalle](capturas/detalle.jpg) | ![config](capturas/config.jpg) | ![confirm](capturas/confirm.jpg) |
+| Pantalla principal | Detalle | Ajustes | Confirmación |
+|---|---|---|---|
+| ![main](capturas/main.png) | ![detalle](capturas/detalle.png) | ![config](capturas/config.png) | ![confirm](capturas/confirm.png) |
 
 ---
 
